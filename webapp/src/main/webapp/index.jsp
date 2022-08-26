@@ -3,7 +3,8 @@
 <h2> Glad to see you here </h2>
 <h1> Good job ATTO on learning Devops</h1>
 <h2> You are becoming on of the best devop engineer in the world! </h2>
-<h1> God isin control</h1>
+<h1> GOD IS IN CONTROL</h1>
 <h2> Keep going, you're not too far... </h2>
+<h1>Stay focused</h1>
 
 
