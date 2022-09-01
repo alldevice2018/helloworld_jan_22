@@ -6,7 +6,7 @@ pipeline {
     environment {
     registry = '663098898416.dkr.ecr.us-east-1.amazonaws.com/devop_repository'
     registryCredential = 'jenkins-ecr'
-    dockerimage = ''
+    
   }
     stages {
         stage('Checkout'){
@@ -16,7 +16,9 @@ pipeline {
         }
         stage('Code Build') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean'
+                sh 'mvn install'
+                sh 'mvn package'
             }
         }
         stage('Test') {
@@ -24,17 +26,11 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Build Image') {
-            steps {
-                script{
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                } 
-            }
-        }
+       
         stage('Deploy image') {
             steps{
                 script{ 
-                    docker.withRegistry("https://"+registry,"ecr:us-east-1:"+registryCredential) {
+                    docker.build Registry + ":$BUILD_NUMBER" {
                         dockerImage.push()
                     }
                 }
